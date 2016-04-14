@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   #게시판 만들기
   root 'noticeboard#board'
   get '/' =>'noticeboard#board'
+  get '/list' =>'noticeboard#list'
   post '/write' => 'noticeboard#write' 
   
   # Example of regular route:
