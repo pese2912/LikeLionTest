@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/' =>'noticeboard#board'
   get '/list' =>'noticeboard#list'
   post '/write' => 'noticeboard#write' 
+  get '/destroy/:id' =>'noticeboard#destroy' #id라는 변수에 값이 담겨서 온다.
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
