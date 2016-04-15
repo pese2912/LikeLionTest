@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/' =>'noticeboard#board'
   get '/list' =>'noticeboard#list'
   post '/write' => 'noticeboard#write' 
-  get '/destroy/:id' =>'noticeboard#destroy' #id라는 변수에 값이 담겨서 온다.
+  post '/update_real/:id' => 'noticeboard#update_real'   #실제 수정할 곳
+  get '/destroy/:id' =>'noticeboard#destroy' #무슨 글을 삭제할지 id라는 변수에 값이 담겨서 온다.
+  get '/update_view/:id' =>'noticeboard#update_view' #무슨 글을 수정할지 id라는 변수에 값이 담겨서 온다.
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
