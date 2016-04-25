@@ -10,19 +10,20 @@ Rails.application.routes.draw do
   #get "Page2" => 'convert#Page2'
   
   #게시판 만들기
-  #root 'noticeboard#board'
- # get '/' =>'noticeboard#board'
-  #get '/list' =>'noticeboard#list'
- # post '/write' => 'noticeboard#write' 
- # post '/update_real/:id' => 'noticeboard#update_real'   #실제 수정할 곳
- # get '/destroy/:id' =>'noticeboard#destroy' #무슨 글을 삭제할지 id라는 변수에 값이 담겨서 온다.
- # get '/update_view/:id' =>'noticeboard#update_view' #무슨 글을 수정할지 id라는 변수에 값이 담겨서 온다.
+  root 'noticeboard#board'
+  get '/' =>'noticeboard#board'
+  get '/list' =>'noticeboard#list'
+  post '/write' => 'noticeboard#write' 
+  post '/update_real/:id' => 'noticeboard#update_real'   #실제 수정할 곳
+  get '/destroy/:id' =>'noticeboard#destroy' #무슨 글을 삭제할지 id라는 변수에 값이 담겨서 온다.
+  get '/update_view/:id' =>'noticeboard#update_view' #무슨 글을 수정할지 id라는 변수에 값이 담겨서 온다.
+  post '/comment_create/:id' =>'noticeboard#comment_create' # 게시글의 키를 넘겨준다.
   
     #얼굴인식
  
-  root 'recognition#face'
-   get '/face' =>'recognition#face'
-   post '/photo' =>'recognition#photo'
+ #root 'recognition#face'
+ # get '/face' =>'recognition#face'
+ #post '/photo' =>'recognition#photo'
 
   
   # Example of regular route:

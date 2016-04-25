@@ -46,5 +46,11 @@ class NoticeboardController < ApplicationController
         redirect_to '/list'
     end
     
+    def comment_create
+        @comment = Comment.new(post_id:params[:id],content:params[:comment])
+        @comment.save
+        redirect_to :back
+    end
+    
     
 end
