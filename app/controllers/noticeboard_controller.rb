@@ -47,8 +47,8 @@ class NoticeboardController < ApplicationController
     end
     
     def comment_create
-        @comment = Comment.new(post_id:params[:id],content:params[:comment])
-        @comment.save
+        comment = Reply.new(post_id:params[:id],comment:params[:reple])
+        comment.save
         redirect_to :back
     end
     
