@@ -5,8 +5,6 @@ class CreateReplies < ActiveRecord::Migration
       t.text :comment
       t.integer :post_id
       
-      
-
       t.timestamps null: false
     end
   end

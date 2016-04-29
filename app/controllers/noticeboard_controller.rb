@@ -14,8 +14,12 @@ class NoticeboardController < ApplicationController
         
         new_post.title = @title     #title은 DB에서 정의한 이름
         new_post.content = @content # params[:content]와 같은 방식
-        new_post.save # 저장
+        if new_post.save # 저장이 됬을경우 아무 짓도 안함
         
+        else # 저장이 안되었다면
+            render :text => new_post.errors.messages[:title].first #메시지 출력
+            
+        end
         
         
     end
