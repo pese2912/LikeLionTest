@@ -1,25 +1,25 @@
+<div class = "container">
 <h1> 여기는 게시판 글 리스트 </h1>
 <%@every_post.each do |p|%> 
 
  <!-- every_post의 내용을 하나씩 뽑아서 do와 end 사이에서 처리하겠다. -->
-<!-- 하나씩 뽑은 값을 p에 저장하겠다. -->
-
-제목 : <%= p.title%><br>
-내용 : <%= p.content%><br>
-시간 : <%= p.created_at %>
-<a href="/destroy/<%=p.id%>">[삭제]</a>
-<a href="/update_view/<%=p.id%>">[수정]</a>
-<hr>
-댓글<br>
-<!-- p의 각 속성을 하나씩 출력 -->
-<!-- =은 출력하겠다는 뜻 -->
-<%p.replies.each do |r| %>
-    <%= r.comment%><br>
-<%end%>
-<hr>
-<form action ="/comment_create/<%=p.id%>" method='post'>
+ <!-- 하나씩 뽑은 값을 p에 저장하겠다. -->
+ 
+  <ul class="list-group">
+      <li class="list-group-item">제목 : <%= p.title%><br></li>
+      <li class="list-group-item">내용 : <%= p.content%><br></li>
+      <li class="list-group-item">시간 : <%= p.created_at %></li>
+      <li class="list-group-item"><a href="/destroy/<%=p.id%>">[삭제]</a></li>
+      <li class="list-group-item"><a href="/update_view/<%=p.id%>">[수정]</a></li>
+      <li class="list-group-item"> <b style="color:green">댓글</b><br>
+        <!-- p의 각 속성을 하나씩 출력 -->
+    <!-- =은 출력하겠다는 뜻 -->
+       <%p.replies.each do |r| %>
+        <%= r.comment%><br>
+    <%end%>
+    <form action ="/comment_create/<%=p.id%>" method='post'>
     <div class="form-group">
-        <label for="exampleInputEmail1">댓글 제목</label>
+     
         <input type="text" name="reple" class="form-control" id="exampleInputEmail1" placeholder="댓글을 써주세요">
     </div>
   
@@ -28,6 +28,14 @@
    
 </form>
 
+     
+      </li>
+  </ul>
+  
+
 <% end %>
 
+
+
 <a href="/">게시판 글쓰러가기</a>
+</div>

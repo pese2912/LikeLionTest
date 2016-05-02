@@ -8,5 +8,15 @@
 
 
 
- Post.create(title: '안녕하세요', content: "첫글입니다.")
- Reply.create(comment: '첫글입니다', post_id:1)
+ #Post.create(title: '안녕하세요', content: "첫글입니다.")
+ #Reply.create(comment: '첫글입니다', post_:1)
+ 
+ new_post = Post.new
+ new_post.title="안녕하세요!"
+ new_post.content="내용입니다!!!"
+ new_post.save
+ 
+ reply = Reply.new
+ reply.comment="첫번째 리플입니다!!!"
+ reply.post = new_post
+ reply.save
