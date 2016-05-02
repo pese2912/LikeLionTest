@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post '/update_real/:id' => 'noticeboard#update_real'   #실제 수정할 곳
   get '/destroy/:id' =>'noticeboard#destroy' #무슨 글을 삭제할지 id라는 변수에 값이 담겨서 온다.
   get '/update_view/:id' =>'noticeboard#update_view' #무슨 글을 수정할지 id라는 변수에 값이 담겨서 온다.
-  post '/comment_create/:id' =>'noticeboard#comment_create' # 게시글의 키를 넘겨준다.
+  post '/comment_create/' =>'noticeboard#comment_create' # 게시글의 키를 넘겨준다.
   
     #얼굴인식
  

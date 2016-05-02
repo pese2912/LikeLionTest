@@ -12,30 +12,46 @@
       <li class="list-group-item"><a href="/destroy/<%=p.id%>">[삭제]</a></li>
       <li class="list-group-item"><a href="/update_view/<%=p.id%>">[수정]</a></li>
       <li class="list-group-item"> <b style="color:green">댓글</b><br>
+      
         <!-- p의 각 속성을 하나씩 출력 -->
     <!-- =은 출력하겠다는 뜻 -->
        <%p.replies.each do |r| %>
         <%= r.comment%><br>
+        <hr>
     <%end%>
-    <form action ="/comment_create/<%=p.id%>" method='post'>
-    <div class="form-group">
-     
-        <input type="text" name="reple" class="form-control" id="exampleInputEmail1" placeholder="댓글을 써주세요">
-    </div>
-  
-  <button type="submit" class="btn btn-default">댓글달기</button>
     
-   
-</form>
+    
+    <div class="form-group">
+        <input type="text" name="reple" class="form-control" id="reply_<%=p.id%>" placeholder="댓글을 써주세요">
+    </div>
+    <button type="submit"  value="<%=p.id%>" class="btn btn-default reply_submit">댓글달기</button>
 
-     
-      </li>
+     </li>
   </ul>
   
-
 <% end %>
-
-
 
 <a href="/">게시판 글쓰러가기</a>
 </div>
+
+
+<script>
+
+//reply_submit이 클릭이 되면 아래 코드 실행
+//
+
+$(".reply_submit").click(function(){
+    
+    post_id =this.value // 게시판 글 번호 값을 대입
+    content = $("#reply_"+post_id).val() //textarea의 값을 가져온다
+    
+$.ajax({
+  method: "POST", // 메소드는 POST방식으로 
+  url: "/comment_create", //보내는 곳
+  data: { reple: content, id: post_id } //보내는 데이터 
+})
+  .done(function( msg ) {
+    alert("리플이 작성되었습니다.");
+  });
+});
+</script>
