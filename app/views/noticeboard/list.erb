@@ -4,7 +4,7 @@
 
  <!-- every_post의 내용을 하나씩 뽑아서 do와 end 사이에서 처리하겠다. -->
  <!-- 하나씩 뽑은 값을 p에 저장하겠다. -->
- 
+
   <ul class="list-group">
       <li class="list-group-item">제목 : <%= p.title%><br></li>
       <li class="list-group-item">내용 : <%= p.content%><br></li>
@@ -13,12 +13,14 @@
       <li class="list-group-item"><a href="/update_view/<%=p.id%>">[수정]</a></li>
       <li class="list-group-item"> <b style="color:green">댓글</b><br>
       
-        <!-- p의 각 속성을 하나씩 출력 -->
+    <!-- p의 각 속성을 하나씩 출력 -->
     <!-- =은 출력하겠다는 뜻 -->
-       <%p.replies.each do |r| %>
-        <%= r.comment%><br>
-        <hr>
-    <%end%>
+    <div id = "reply_content_<%= p.id %>" >
+        <%p.replies.each do |r| %>
+            <p><%= r.comment%></p><br>
+            <hr>
+        <%end%>
+    </div>
     
     
     <div class="form-group">
@@ -31,6 +33,7 @@
   
 <% end %>
 
+
 <a href="/">게시판 글쓰러가기</a>
 </div>
 
@@ -40,6 +43,7 @@
 //reply_submit이 클릭이 되면 아래 코드 실행
 //
 
+$(function(){ //로딩된 후에 호출하겠다.
 $(".reply_submit").click(function(){
     
     post_id =this.value // 게시판 글 번호 값을 대입
@@ -48,10 +52,18 @@ $(".reply_submit").click(function(){
 $.ajax({
   method: "POST", // 메소드는 POST방식으로 
   url: "/comment_create", //보내는 곳
-  data: { reple: content, id: post_id } //보내는 데이터 
+  data: { reple: content, id: post_id }, //보내는 데이터
+  success: function(){
+      $("#reply_content_"+post_id ).append( "<p>"+content+"</p>"); // 지정된 아이디 글에만 댓글 작성
+       $("#reply_"+post_id).val(''); //다시 내용을 초기화 
+      console.log(content);
+      alert("리플이 작성되었습니다.");
+  },
+  error: function(){
+      alert("리플이 작성되지 않았습니다.");
+  }
 })
-  .done(function( msg ) {
-    alert("리플이 작성되었습니다.");
-  });
+  
+});
 });
 </script>
